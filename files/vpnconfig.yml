@@ -1,0 +1,45 @@
+### This does not work currently and is unrelated to the correct openVPN install
+### Do not use this
+- name: Install OpenVPN and Easy RSA
+  hosts: ansible-lab-controller
+  become: true
+  tasks:
+  - name: Update apt packages
+    apt:
+      upgrade: yes
+  - name: Install openvpn
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - openvpn
+      - easy-rsa
+
+  - name: Copy RSA File
+    copy:
+     src: /usr/share/easy-rsa
+     dest: /etc/openvpn
+
+  - name: Use Template file
+    template:
+      src: ./files/vars.j2
+      dest: /etc/openvpn/easy-rsa/vars
+      mode: "0755"
+ 
+  - name: Change working dir
+    shell: ./easyrsa init-pki
+    args:
+      chdir: /etc/openvpn/easy-rsa/
+    tags: init
+
+  - name: Change working dir
+    shell: ./easyrsa build-ca
+    args:
+      chdir: /etc/openvpn/easy-rsa/
+
+
+
+
+
+
+
