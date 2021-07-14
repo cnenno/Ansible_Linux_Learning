@@ -1,4 +1,7 @@
-# CSC 395 - Fundamentals of Modern Linux Administration
+# THIS CONTENT IS FROM MSSA / SAINT MARTIN's CSC 395 - Fundamentals of Modern Linux Administration
+
+## The intent is retain knowledge and allow others to review the content
+## For study purposes ONLY!
 
 ## Lab Exercises
 
